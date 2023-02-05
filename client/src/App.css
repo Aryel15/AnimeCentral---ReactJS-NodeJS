@@ -1,0 +1,115 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*LIGHT*/
+body.light{
+  background-color: #fff;
+  background-image: url(../public/imgs/back2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-attachment: fixed;
+  color:rgb(21, 21, 21);
+}
+body.light h1, li, p, span{
+  color:rgb(21, 21, 21);
+}
+body.light label{
+  color:rgb(21, 21, 21);
+}
+body.light input{
+  background: none;
+  border: solid #3b3b3bc4 1px;
+  color:rgb(21, 21, 21);
+}
+body.ligth table{
+  color: rgb(21, 21, 21);
+}
+body.light tbody tr td {
+  border: 0.5px #3b3b3bc4 solid;
+}
+body.light td:first-child:hover{
+  background-color: rgba(25, 25, 183, 0.737);
+  color: #fff;
+}
+body.light td:nth-child(4):hover {
+  background-color: rgba(25, 25, 183, 0.737);
+  color: #fff;
+}
+body.light td i{
+  color: rgb(21, 21, 21);
+  transition: all 0.7s;
+}
+body.light td i:hover {
+  cursor: pointer;
+  color: #1c1c1cc9;
+}
+body.light td a{
+  text-decoration: none;
+  color:rgb(0, 0, 0);
+}
+body.light td:hover a{
+  text-decoration: none;
+  color:rgb(255, 255, 255);
+}
+body.light .sair{
+  color: rgb(21, 21, 21);
+}
+
+
+/*DARK*/
+body.dark{
+  background-color: rgb(21, 21, 21);
+  background-image: url(../public/imgs/back.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-attachment: fixed;
+  color:#fff;
+}
+body.dark h1, li, p, span{
+  color: #fff;
+}
+body.dark label{
+  color: #fff;
+}
+body.dark input{
+  background: none;
+  border: solid #ffffff42 1px;
+  color:#fff;
+}
+body.dark table{
+  color: rgb(203, 203, 203);
+}
+body.dark tbody tr td {
+  border: 0.5px #ffffff42 solid;
+}
+body.dark td:first-child:hover{
+  background-color: #ffffffc9;
+  color: rgb(25, 25, 183);
+}
+body.dark td:nth-child(4):hover {
+  background-color: #ffffffc9;
+  color: rgb(25, 25, 183);
+}
+body.dark td i{
+  color: #fff;
+}
+body.dark td i:hover {
+  color: #ffffffc9;
+}
+body.dark td a{
+  text-decoration: none;
+  color:#fff;
+}
+body.dark td:hover a{
+  text-decoration: none;
+  color:rgb(25, 25, 183);
+}
+body.dark .sair{
+  color: #fff;
+}

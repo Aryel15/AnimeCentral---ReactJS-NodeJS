@@ -1,0 +1,168 @@
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(21, 21, 21);
+    background-image: url(../../../public/imgs/back2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-attachment: fixed;
+}
+
+.animes h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+h2{
+    margin-bottom: 15px;
+    text-align: center;
+    color: rgb(25, 25, 183);
+    font-size: 1.2rem;
+}
+
+/* Home */
+
+p {
+    text-align: center;
+}
+
+.animes {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.animes main{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+table {
+    margin: 20px auto;
+    margin-bottom: 15px;
+    border-spacing: 0;
+}
+
+thead{
+    background-color: rgb(1, 1, 27);
+    color: white;
+    border-radius: 15px 15px 0px 0px;
+    border: #fff;
+}
+
+thead tr {
+    background-color: rgb(25, 25, 183);
+    color: white;
+    border: 0.5px rgb(25, 25, 183) solid;
+}
+tbody tr td {
+    border: 0.5px #ffffff42 solid;
+}
+
+tbody tr:first-child td{
+    border-top: none;
+}
+
+th {
+    padding: 10px 20px;
+}
+
+td {
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.7s;
+}
+
+td:first-child {
+    text-align: left;
+}
+
+td i {
+    padding: 0 5px;
+}
+
+td:first-child:hover, td:nth-child(4):hover {
+    cursor: pointer;
+}
+td i{
+    transition: all 0.7s;
+}
+td i:hover {
+    cursor: pointer;
+}
+
+.link_adicionar {
+    font-weight: 600;
+    background-color: rgb(25, 25, 183);
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.7s;
+    border: none;
+    margin: 10px 0px;
+    border-radius: 5px;
+}
+
+.link_adicionar:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgb(25, 25, 183);
+}
+
+.sair{
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.7s;
+}
+.sair:hover{
+    color: rgb(25, 25, 183);
+    text-decoration: underline;
+}
+.messageErro {
+    background-color: red;
+    color: #fff;
+    width: 35vw;
+    padding: 5px;
+    margin: 5px 0;
+
+}
+
+.messageSucess {
+    background-color: rgb(0, 162, 0);
+    color: #fff;
+    width: 35vw;
+    padding: 5px;
+    margin: 5px 0;
+}
+
+@media screen and (max-width:600px) {
+    thead tr{
+        display: block;
+        text-align: -webkit-center;
+    }
+    tbody td{
+        display: block;
+        text-align: center;
+    }
+    tbody td:first-child{
+        display: block;
+        text-align: center;
+    }
+    tbody tr td:last-child{
+        border-bottom: #ffffff42 5px solid;
+        margin-bottom: 10px;
+    }
+    tbody tr{
+        border: 1px solid rgb(25, 25, 183);
+        border-bottom: 2px solid rgb(25, 25, 183);
+    }
+}
+@media screen and (max-width:450px) {
+    table{
+        margin: 0px;
+        width: 100%;
+    }
+}
