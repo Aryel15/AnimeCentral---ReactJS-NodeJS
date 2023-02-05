@@ -1,4 +1,6 @@
 import { BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT } from "../config";
+
+
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
