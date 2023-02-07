@@ -1,5 +1,4 @@
-import { BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT } from "../config";
-
+import { BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT, BD_URL } from "../config";
 
 const express = require("express");
 const app = express();
@@ -13,11 +12,14 @@ const db = mysql.createPool({
     user: BD_USER,
     passsword: BD_PASSWORD,
     database: BD_NAME,
-    port: BD_PORT
+    port: BD_PORT,
+    url: BD_URL
 });
 
 app.use(express.json());
 app.use(cors());
+
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.get("/home", (req, res) => {
     db.query("SELECT * FROM animes_list",
@@ -203,6 +205,10 @@ app.post("/login", (req, res) =>{
         }
     })
 })
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+});
 
 app.listen(3001, () => {
     console.log("Porta 3001");
