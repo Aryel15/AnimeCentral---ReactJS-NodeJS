@@ -24,7 +24,7 @@ export default function Editar() {
 
       React.useEffect(() =>{
         const getAnime = async () =>{
-          Axios.post("http://localhost:3001/visualizar",{
+          Axios.post("/visualizar",{
             id: id
           }).then((response) => {
             const animes = Object.values(response.data)[0];
@@ -37,7 +37,7 @@ export default function Editar() {
       const editAnime = async e =>{
         e.preventDefault();
 
-        Axios.post("http://localhost:3001/editar",{
+        Axios.post("/editar",{
           titulo: anime.titulo,
           status_: anime.status_,
           nota: anime.nota,

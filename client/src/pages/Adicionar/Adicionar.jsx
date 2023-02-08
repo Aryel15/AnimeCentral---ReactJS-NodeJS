@@ -42,7 +42,7 @@ export default function Adicionar() {
 
     const [data, setData] = React.useState([]);
     const getAnimes = () => {
-      Axios.post("http://localhost:3001/meusanimes",{
+      Axios.post("/meusanimes",{
       username: user
       }).then((response) => {
         setData(response.data)
