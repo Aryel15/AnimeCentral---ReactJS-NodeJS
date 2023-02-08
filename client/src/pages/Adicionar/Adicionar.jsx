@@ -22,7 +22,7 @@ export default function Adicionar() {
         e.preventDefault();
         console.log(anime);
 
-        Axios.post("http://localhost:3001/adicionar",{
+        Axios.post("/adicionar",{
           titulo: anime.titulo,
           status_: anime.status_,
           nota: anime.nota,
