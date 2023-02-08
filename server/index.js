@@ -203,15 +203,15 @@ app.post("/login", (req, res) =>{
         }
     })
 })
-
-//app.use('/', express.static( resolve( __dirname, '../client/build' ) ) ) 
-//app.use('*', express.static( resolve( __dirname, '../client/build' ) ) )
+const {resolve}= require('path');
+app.use('/', express.static( resolve( __dirname, '../client/build' ))) 
+app.use('*', express.static( resolve( __dirname, '../client/build' )))
 /*app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});*/
+});
 app.get('*', (req, res) => {
     res.sendFile(__dirname + './client/build/index.html');
-});
+});*/
 
 app.listen(process.env.PORT || 3001,(err) => {     
     if(err){
