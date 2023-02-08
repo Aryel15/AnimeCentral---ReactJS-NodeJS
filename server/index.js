@@ -19,8 +19,6 @@ const db = mysql.createPool({
 app.use(express.json());
 app.use(cors());
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
-
 app.get("/home", (req, res) => {
     db.query("SELECT * FROM animes_list",
     (err, result) => {
@@ -206,10 +204,12 @@ app.post("/login", (req, res) =>{
     })
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
+app.use('/', express.static( resolve( __dirname, '../client/build' ) ) ) 
+app.use('*', express.static( resolve( __dirname, '../client/build' ) ) )
 
-app.listen(3001, () => {
-    console.log("Porta 3001");
+app.listen(process.env.PORT || 3001,(err) => {     
+    if(err){
+        return console.log(err)
+    }      
+    console.log('Sistema no ar') 
 })
