@@ -7,7 +7,7 @@ const BD_URL = `mysql://${{ BD_USER }}:${{ BD_PASSWORD }}@${{ BD_HOST }}:${{ BD_
 
 const express = require("express");
 const app = express();
-const mysql = require("mysql2");
+const mysql = require("mysql");
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;

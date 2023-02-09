@@ -1,13 +1,9 @@
 const express = require('express');
-const {resolve}= require('path');
 const app = express();
 
-app.use('/', express.static( resolve( __dirname, './build' ))); 
-app.use('*', express.static( resolve( __dirname, './build' )));
+const baseDir = `${__dirname}/build/`;
+app.use(express.static(`${baseDir}`));
 
-app.listen(process.env.PORT || 3000,(err) => {
-    if(err){
-      return console.log(err)
-    }
-    console.log('Sistema no ar')
-});
+app.get('*', (req,res) => res.sendFile('index.html' , { root : baseDir }));
+
+app.listen(3000, () => console.log('Sistema no ar'));
