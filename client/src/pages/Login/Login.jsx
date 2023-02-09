@@ -17,7 +17,7 @@ export default function Login() {
 
   const handleClickLogin = async e =>{
     e.preventDefault();
-    Axios.post("/login",{
+    Axios.post("https://backendanime-ljfk.onrender.com/login",{
       email: login.email,
       senha: login.senha
     }).then((response) => {

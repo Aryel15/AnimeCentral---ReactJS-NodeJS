@@ -9,7 +9,7 @@ export default function Home() {
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    Axios.get("/home")
+    Axios.get("https://backendanime-ljfk.onrender.com/home")
     .then((response) => {
        setData(response.data)
     });

@@ -22,7 +22,7 @@ export default function Adicionar() {
         e.preventDefault();
         console.log(anime);
 
-        Axios.post("/adicionar",{
+        Axios.post("https://backendanime-ljfk.onrender.com/adicionar",{
           titulo: anime.titulo,
           status_: anime.status_,
           nota: anime.nota,
@@ -42,7 +42,7 @@ export default function Adicionar() {
 
     const [data, setData] = React.useState([]);
     const getAnimes = () => {
-      Axios.post("/meusanimes",{
+      Axios.post("https://backendanime-ljfk.onrender.com/meusanimes",{
       username: user
       }).then((response) => {
         setData(response.data)
