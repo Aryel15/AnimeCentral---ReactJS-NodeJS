@@ -1,4 +1,4 @@
-import { BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT, BD_URL } from "../config";
+import { BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT, BD_URL } from "./config";
 
 const express = require("express");
 const app = express();
@@ -203,15 +203,6 @@ app.post("/login", (req, res) =>{
         }
     })
 })
-const {resolve}= require('path');
-app.use('/', express.static( resolve( __dirname, '../client/build' ))) 
-app.use('*', express.static( resolve( __dirname, '../client/build' )))
-/*app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
-app.get('*', (req, res) => {
-    res.sendFile(__dirname + './client/build/index.html');
-});*/
 
 app.listen(process.env.PORT || 3001,(err) => {     
     if(err){
