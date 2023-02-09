@@ -1,4 +1,9 @@
-import { BD_HOST, BD_USER, BD_PASSWORD, BD_NAME, BD_PORT, BD_URL } from "./config";
+const BD_HOST = process.env.BD_HOST || 'localhost';
+const BD_USER = process.env.BD_USER || 'root';
+const BD_PASSWORD = process.env.BD_PASSWORD || 'senha1234';
+const BD_NAME = process.env.BD_NAME || 'animecentral';
+const BD_PORT = process.env.BD_PORT || 3306;
+const BD_URL = `mysql://${{ BD_USER }}:${{ BD_PASSWORD }}@${{ BD_HOST }}:${{ BD_PORT }}/${{ BD_NAME }}`
 
 const express = require("express");
 const app = express();
