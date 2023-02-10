@@ -1,9 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
-const baseDir = `${__dirname}/build/`;
-app.use(express.static(`${baseDir}`));
+app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('*', (req,res) => res.sendFile('index.html' , { root : baseDir }));
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(3000, () => console.log('Sistema no ar'));
