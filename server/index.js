@@ -12,7 +12,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host: BD_HOST,
     user: BD_USER,
     passsword: BD_PASSWORD,
