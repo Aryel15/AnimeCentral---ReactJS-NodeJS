@@ -13,7 +13,7 @@ export default function Users() {
 
   React.useEffect(() => {
     const getAnimes = () => {
-      Axios.post("https://backendanime-ljfk.onrender.com/meusanimes",{
+      Axios.post("http://localhost:3001/meusanimes",{
       user: user
       }).then((response) => {
         setData(response.data)

@@ -17,7 +17,7 @@ export default function Cadastro() {
 
   const handleClickCadastro = async e =>{
     e.preventDefault();
-    Axios.post("https://backendanime-ljfk.onrender.com/cadastro",{
+    Axios.post("http://localhost:3001/cadastro",{
       username: cadastro.username,
       email: cadastro.email,
       senha: cadastro.senha

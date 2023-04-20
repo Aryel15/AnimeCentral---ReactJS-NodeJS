@@ -20,7 +20,7 @@ export default function MeusAnimes() {
   
     React.useEffect(() => {
       const getAnimes = () => {
-        Axios.post("https://backendanime-ljfk.onrender.com/meusanimes",{
+        Axios.post("http://localhost:3001/meusanimes",{
         user: username
         }).then((response) => {
           setData(response.data)
@@ -29,7 +29,7 @@ export default function MeusAnimes() {
       getAnimes();
       const apagarAnime = async (idAnime) => {
         //console.log(idAnime);
-        Axios.post("https://backendanime-ljfk.onrender.com/apagar",{
+        Axios.post("http://localhost:3001/apagar",{
           id: idAnime
         }).then((response) => {
             setStatus({
