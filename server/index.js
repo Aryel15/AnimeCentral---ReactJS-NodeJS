@@ -130,6 +130,7 @@ app.post("/editar", (req, res) => {
 
 
 app.post("/cadastro", (req, res) => {
+    console.log("rota acessada")
     const username = req.body.username;
     const email = req.body.email;
     const senha = req.body.senha;
@@ -163,6 +164,7 @@ app.post("/cadastro", (req, res) => {
       }
     });
 });
+
   
 app.post("/login", (req, res) => {
     const email = req.body.email;
