@@ -12,7 +12,7 @@ export default function Animes() {
 
   React.useEffect(() => {
     const getAnimes = () => {
-      Axios.post("http://localhost:3001/animes",{
+      Axios.post("https://backendanime-ljfk.onrender.com/animes",{
       titulo: titulo
       }).then((response) => {
         setData(response.data)
