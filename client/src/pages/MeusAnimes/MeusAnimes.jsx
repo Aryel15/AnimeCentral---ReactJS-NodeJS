@@ -1,59 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Menu from '../../components/Menu/Menu'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './MeusAnimes.css'
 import Axios from 'axios';
 
 export default function MeusAnimes() {
     var username = localStorage.getItem("user");
 
-    const [data, setData] = React.useState([]);
-    const [id, setId] = React.useState('');
-    const [status, setStatus] = React.useState({
+    const [data, setData] = useState([]);
+    const [id, setId] = useState('');
+    const [status, setStatus] = useState({
       type: '',
       mensagem: ''
     });
+
+    const navigate = useNavigate()
 
     function sair(){
       localStorage.clear();
     }
   
-    React.useEffect(() => {
-      const getAnimes = () => {
-        Axios.post("https://backendanime-ljfk.onrender.com/meusanimes",{
-        user: username
-        }).then((response) => {
+    useEffect(() => {
+        Axios.get(`http://localhost:3000/anime/user/${username}`)
+        .then((response) => {
           setData(response.data)
         });
-      }
-      getAnimes();
-      const apagarAnime = async (idAnime) => {
-        //console.log(idAnime);
-        Axios.post("https://backendanime-ljfk.onrender.com/apagar",{
-          id: idAnime
-        }).then((response) => {
-            setStatus({
-              erro: response.data.erro,
-              mensagem: response.data.msg,
-            })
-        }).catch(() =>{
-          setStatus({
-            type: 'erro',
-            mensagem: 'Não foi possível excluir este anime, tente mais tarde!'
-          })
-        })
-        setTimeout(function() {
-          window.location.pathname = "/meusanimes";
-        }, 3000);
-      };
-
-      if(id === ''){
-
-      }else{
-        apagarAnime(id);
-      }
       
-    },[username, id])
+    },[username])
+
+    const apagarAnime = (idAnime) => {
+      //console.log(idAnime);
+      Axios.delete(`http://localhost:3000/anime/${idAnime}`)
+      .then((response) => {
+        console.log(response);
+          setStatus({
+            erro: response.status !== 201,
+            mensagem: response.data.message,
+          })
+      }).catch(() =>{
+        setStatus({
+          type: 'erro',
+          mensagem: 'Não foi possível excluir este anime, tente mais tarde!'
+        })
+      })
+      setTimeout(function() {
+        navigate("/meusanimes")
+      }, 3000);
+    };
 
   return (
     <>
@@ -61,8 +54,8 @@ export default function MeusAnimes() {
         <div className="animes">
             <h1>Melhores Animes</h1>
             <h2>{username}</h2>
-            { status.erro === true ? <p className="messageErro">{status.mensagem}</p> : "" }
-            { status.erro === false ? <p className="messageSucess">{status.mensagem}</p> : "" }
+            { status.erro ? <p className="messageErro">{status.mensagem}</p> : "" }
+            { !status.erro ? <p className="messageSucess">{status.mensagem}</p> : "" }
             <main>
                 <table>
                     <thead>
@@ -82,8 +75,8 @@ export default function MeusAnimes() {
                             <td>{anime.status_}</td>
                             <td>{anime.nota}</td>
                             <td>{anime.user}</td>
-                            <td><Link to={ "/editar/" + anime.id }><i class="fa-solid fa-pen-to-square"></i></Link>
-                            <i class="fa-regular fa-trash-can" onClick={() => setId(anime.id)}></i></td>
+                            <td><Link to={ "/editar/" + anime._id }><i class="fa-solid fa-pen-to-square"></i></Link>
+                            <i class="fa-regular fa-trash-can" onClick={() => apagarAnime(anime._id)}></i></td>
                             
                         </tr>
                         ))

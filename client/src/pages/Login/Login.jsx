@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './login.css'
 import Menu from '../../components/Menu/Menu';
 import Axios from 'axios'
 
 export default function Login() {
-  const [statuslog, setStatuslog] = React.useState({
+  const [statuslog, setStatuslog] = useState({
     erro: '',
     mensagem:'',
     username: ''
   })
-  const [login, setLogin] = React.useState({
+  const [login, setLogin] = useState({
     email: '',
     senha: ''
   })
@@ -17,23 +17,24 @@ export default function Login() {
 
   const handleClickLogin = async e =>{
     e.preventDefault();
-    Axios.post("https://backendanime-ljfk.onrender.com/login",{
+    Axios.post(`http://localhost:3000/user/login`,{
       email: login.email,
       senha: login.senha
     }).then((response) => {
-      if(response.data.erro === true){
+      console.log(response.data);
+      if(!response.data.data){
         setStatuslog({
-          erro: response.data.erro,
-          mensagem: response.data.msg
+          erro: true,
+          mensagem: response.data.message
         });
       }else{
         setStatuslog({
-          erro: response.data.erro,
-          mensagem: response.data.msg,
-          username: response.data.username
+          erro: false,
+          mensagem: response.data.message,
+          username: response.data.data.username
         })
 
-        var username = response.data.username;
+        var username = response.data.data.username;
         localStorage.setItem("user", username);
         
         setTimeout(function() {

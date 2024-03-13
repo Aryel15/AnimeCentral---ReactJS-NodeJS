@@ -4,6 +4,7 @@ import './menu.css'
 
 export default function Menu() {
     const[menuAberto, setMenu] = React.useState(false);
+    const logout = () => {localStorage.clear(); window.location.reload()}
 
   return (
     <>
@@ -19,9 +20,10 @@ export default function Menu() {
             <li><a href="/adicionar">Adicionar Anime</a></li>
             <li><a href="/meusanimes">Meus animes</a></li>
             <ToggleTheme/>
+            <i class="fa-solid fa-right-from-bracket" onClick={logout}></i>
         </ul>
         : ""
-        }
+    }
         { 
         window.location.pathname === '/' && localStorage.getItem("user") === null ? 
         <ul className={ menuAberto ? 'menu-mobile' : 'menu'}>
@@ -30,25 +32,27 @@ export default function Menu() {
             <ToggleTheme/>
         </ul>
         : ""
-        }
+    }
         { 
         window.location.pathname === '/adicionar'? 
         <ul className={ menuAberto ? 'menu-mobile' : 'menu'}>
             <li><a href="/">Home</a></li>
             <li><a href="/meusanimes">Meus animes</a></li>
             <ToggleTheme/>
+            <i class="fa-solid fa-right-from-bracket" onClick={logout}></i>
         </ul>
         : ""
-        }
+    }
         { 
         window.location.pathname === '/meusanimes'? 
         <ul className={ menuAberto ? 'menu-mobile' : 'menu'}>
             <li><a href="/">Home</a></li>
             <li><a href="/adicionar">Adicionar Anime</a></li>
             <ToggleTheme/>
+            <i class="fa-solid fa-right-from-bracket" onClick={logout}></i>
         </ul>
         : ""
-        }
+    }
         { 
         window.location.pathname === '/cadastro'? 
         <ul className={ menuAberto ? 'menu-mobile' : 'menu'}>
@@ -57,7 +61,7 @@ export default function Menu() {
             <ToggleTheme/>
         </ul>
         : ""
-        }
+    }
         { 
         window.location.pathname === '/login'? 
         <ul className={ menuAberto ? 'menu-mobile' : 'menu'}>
@@ -66,7 +70,7 @@ export default function Menu() {
             <ToggleTheme/>
         </ul>
         : ""
-        }
+    }
     </nav>
     </>
   )

@@ -1,25 +1,21 @@
 import './Users.css';
 import '../../components/Menu/menu.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ToggleTheme } from '../../Themes/ToggleTheme'
 import Axios from 'axios';
 
 export default function Users() {
   const {user} = useParams();
-  const[menuAberto, setMenu] = React.useState(false);
+  const[menuAberto, setMenu] = useState(false);
 
-  const [data, setData] = React.useState([]);
+  const [data, setData] = useState([]);
 
-  React.useEffect(() => {
-    const getAnimes = () => {
-      Axios.post("https://backendanime-ljfk.onrender.com/meusanimes",{
-      user: user
-      }).then((response) => {
+  useEffect(() => {
+      Axios.get(`http://localhost:3000/anime/user/${user}`)
+      .then((response) => {
         setData(response.data)
       });
-    }
-    getAnimes();
   },[user])
 
   return (
@@ -66,7 +62,7 @@ export default function Users() {
             <tbody>
               {
                 Object.values(data).sort(function(a, b) { return b.nota - a.nota } ).map(anime => (
-                  <tr key={anime.id}>
+                  <tr key={anime._id}>
                     <td><Link to={'/animes/' + anime.titulo}>{anime.titulo}</Link></td>
                     <td>{anime.status_}</td>
                     <td>{anime.nota}</td>

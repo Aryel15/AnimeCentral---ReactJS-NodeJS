@@ -1,24 +1,20 @@
 import './animes.css';
 import '../../components/Menu/menu.css';
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { ToggleTheme } from '../../Themes/ToggleTheme'
 import Axios from 'axios';
 
 export default function Animes() {
   const {titulo} = useParams();
-  const[menuAberto, setMenu] = React.useState(false);
-  const [data, setData] = React.useState([]);
+  const [menuAberto, setMenu] = useState(false);
+  const [data, setData] = useState([]);
 
-  React.useEffect(() => {
-    const getAnimes = () => {
-      Axios.post("https://backendanime-ljfk.onrender.com/animes",{
-      titulo: titulo
-      }).then((response) => {
+  useEffect(() => {
+      Axios.get(`http://localhost:3000/anime/titulo/${titulo}`)
+      .then((response) => {
         setData(response.data)
       });
-    }
-    getAnimes();
 
   },[titulo])
 
@@ -65,7 +61,7 @@ export default function Animes() {
             <tbody>
               {
                 Object.values(data).sort(function(a, b) { return b.nota - a.nota } ).map(anime => (
-                  <tr key={anime.id}>
+                  <tr key={anime._id}>
                     <td>{anime.titulo}</td>
                     <td>{anime.status_}</td>
                     <td>{anime.nota}</td>

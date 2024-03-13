@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './editar.css';
 import '../../components/Menu/menu.css';
 import { useParams } from 'react-router-dom';
@@ -7,37 +7,29 @@ import Axios from 'axios';
 
 export default function Editar() {
     const {id} = useParams();
-    const [anime, setAnime] = React.useState({
+    const [anime, setAnime] = useState({
       id:'',
       titulo: '',
       status_: '',
       nota:''
     });
-    const [status, setStatus] = React.useState({
+    const [status, setStatus] = useState({
       type: '',
       mensagem: ''
     })
     let valorInput = e => setAnime({...anime, [e.target.name]: e.target.value, id})
-    /*var [titulo, setTitulo] = React.useState('');
-    var [status_, setStatus_] = React.useState('');
-    var [nota, setNota] = React.useState('');*/
 
-      React.useEffect(() =>{
-        const getAnime = async () =>{
-          Axios.post("https://backendanime-ljfk.onrender.com/visualizar",{
-            id: id
-          }).then((response) => {
-            const animes = Object.values(response.data)[0];
-            setAnime(animes);
+      useEffect(() =>{
+          Axios.get(`http://localhost:3000/anime/${id}`)
+          .then((response) => {
+            setAnime(response.data);
           });
-        }
-        getAnime();
       }, [id]);
       
       const editAnime = async e =>{
         e.preventDefault();
 
-        Axios.post("https://backendanime-ljfk.onrender.com/editar",{
+        Axios.put(`http://localhost:3000/anime/${anime.id}`,{
           titulo: anime.titulo,
           status_: anime.status_,
           nota: anime.nota,
@@ -46,7 +38,7 @@ export default function Editar() {
         }).then((response) => {
             setStatus({
               erro: response.data.erro,
-              mensagem: response.data.msg,
+              mensagem: response.data.message,
             })
         }).catch(() =>{
           setStatus({
@@ -55,7 +47,7 @@ export default function Editar() {
           })
         })
       }
-      const[menuAberto, setMenu] = React.useState(false);
+      const[menuAberto, setMenu] = useState(false);
 
 
   return (
@@ -75,8 +67,8 @@ export default function Editar() {
       </nav>
       <div className="adicionar">
         <h1>Editar anime</h1>
-        { status.erro === true ? <p className="messageErro">{status.mensagem}</p> : "" }
-        { status.erro === false ? <p className="messageSucess">{status.mensagem}</p> : "" }
+        { status.erro ? <p className="messageErro">{status.mensagem}</p> : "" }
+        { !status.erro ? <p className="messageSucess">{status.mensagem}</p> : "" }
         <form className='cadastro' onSubmit={editAnime}>
           <label htmlFor="titulo">Titulo:</label><br />
           <input type="text" name='titulo' value={anime.titulo} onChange={valorInput}/><br />

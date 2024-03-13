@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './adicionar.css'
 import Menu from '../../components/Menu/Menu';
 import Axios from 'axios';
 
 export default function Adicionar() {
     var user = localStorage.getItem("user");
-    const [anime, setAnime] = React.useState({
+    const [anime, setAnime] = useState({
         titulo: '',
         status_: '',
         nota:'',
         user:''
     });
 
-    const [status, setStatus] = React.useState({
+    const [status, setStatus] = useState({
       type: '',
       mensagem: ''
     })
@@ -21,35 +21,41 @@ export default function Adicionar() {
     const cadAnime = async e =>{
         e.preventDefault();
         console.log(anime);
-
-        Axios.post("https://backendanime-ljfk.onrender.com/adicionar",{
-          titulo: anime.titulo,
-          status_: anime.status_,
-          nota: anime.nota,
-          user: anime.user
-        }).then((response) => {
-            setStatus({
-              erro: response.data.erro,
-              mensagem: response.data.msg,
+        if(Object.keys(anime).every(key => anime[key] !== '')){
+          Axios.post("http://localhost:3000/anime",{
+            titulo: anime.titulo,
+            status_: anime.status_,
+            nota: anime.nota,
+            user: anime.user
+          }).then((response) => {
+              setStatus({
+                erro: !response.data.data ? true : false,
+                mensagem: response.data.message,
+              })
+              setAnime({
+                titulo: '',
+                status_: '',
+                nota:'',
+                user:''
             })
-        }).catch(() =>{
-          setStatus({
-            type: 'erro',
-            mensagem: 'Anime não adicionado, tente mais tarde!'
+          }).catch(() =>{
+            setStatus({
+              type: 'erro',
+              mensagem: 'Anime não adicionado, tente mais tarde!'
+            })
           })
-        })
+        }
     }
 
-    const [data, setData] = React.useState([]);
+    const [data, setData] = useState([]);
     const getAnimes = () => {
-      Axios.post("https://backendanime-ljfk.onrender.com/meusanimes",{
-      username: user
-      }).then((response) => {
+      Axios.get(`http://localhost:3000/anime/user/${user}`)
+      .then((response) => {
         setData(response.data)
       });
     }
   
-    React.useEffect(() => {
+    useEffect(() => {
       getAnimes();
     },[])
 

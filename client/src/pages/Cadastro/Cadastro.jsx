@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './cadastro.css'
 import Menu from '../../components/Menu/Menu';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Cadastro() {
-  const [statuscad, setStatuscad] = React.useState({
+  const navigate = useNavigate()
+  const [statuscad, setStatuscad] = useState({
     erro: '',
     mensagem:''
   })
-  const [cadastro, setCadastro] = React.useState({
+  const [cadastro, setCadastro] = useState({
     username: '',
     email: '',
     senha: ''
@@ -17,23 +19,23 @@ export default function Cadastro() {
 
   const handleClickCadastro = async e =>{
     e.preventDefault();
-    Axios.post("https://backendanime-ljfk.onrender.com/cadastro",{
+    Axios.post("http://localhost:3000/user",{
       username: cadastro.username,
       email: cadastro.email,
       senha: cadastro.senha
     }).then((response) => {
-      if(response.data.erro === true){
+      if(response.data.erro){
         setStatuscad({
           erro: response.data.erro,
-          mensagem: response.data.msg
+          mensagem: response.data.message
         });
       }else{
         setStatuscad({
           erro: response.data.erro,
-          mensagem: response.data.msg
+          mensagem: response.data.message
         });
         setTimeout(function() {
-          window.location.pathname = "/login";
+          navigate("/login");
         }, 3000);
       }
     });
@@ -43,8 +45,8 @@ export default function Cadastro() {
         <Menu/>
         <main>
             <h1>Cadastre-se</h1>
-            { statuscad.erro === true ? <p className="messageErro">{statuscad.mensagem}</p> : "" }
-            { statuscad.erro === false? <p className="messageSucess">{statuscad.mensagem}</p> : "" }
+            { statuscad.erro ? <p className="messageErro">{statuscad.mensagem}</p> : "" }
+            { !statuscad.erro? <p className="messageSucess">{statuscad.mensagem}</p> : "" }
             <form className='cadastro' onSubmit={handleClickCadastro}>
                 <label htmlFor="username">Nome de usuário:</label><br />
                 <input type="text" name='username' onChange={valorCadastro}/><br />
