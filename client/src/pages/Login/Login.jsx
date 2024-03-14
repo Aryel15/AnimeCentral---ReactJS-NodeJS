@@ -17,7 +17,7 @@ export default function Login() {
 
   const handleClickLogin = async e =>{
     e.preventDefault();
-    Axios.post(`https://animecentral-reactjs-nodejs.onrender.com//user/login`,{
+    Axios.post(`https://animecentral-reactjs-nodejs.onrender.com/user/login`,{
       email: login.email,
       senha: login.senha
     }).then((response) => {

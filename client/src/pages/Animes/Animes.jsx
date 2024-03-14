@@ -11,7 +11,7 @@ export default function Animes() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      Axios.get(`https://animecentral-reactjs-nodejs.onrender.com//anime/titulo/${titulo}`)
+      Axios.get(`https://animecentral-reactjs-nodejs.onrender.com/anime/titulo/${titulo}`)
       .then((response) => {
         setData(response.data)
       });

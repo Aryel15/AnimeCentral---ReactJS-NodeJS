@@ -22,7 +22,7 @@ export default function Adicionar() {
         e.preventDefault();
         console.log(anime);
         if(Object.keys(anime).every(key => anime[key] !== '')){
-          Axios.post("https://animecentral-reactjs-nodejs.onrender.com//anime",{
+          Axios.post("https://animecentral-reactjs-nodejs.onrender.com/anime",{
             titulo: anime.titulo,
             status_: anime.status_,
             nota: anime.nota,
@@ -49,7 +49,7 @@ export default function Adicionar() {
 
     const [data, setData] = useState([]);
     const getAnimes = () => {
-      Axios.get(`https://animecentral-reactjs-nodejs.onrender.com//anime/user/${user}`)
+      Axios.get(`https://animecentral-reactjs-nodejs.onrender.com/anime/user/${user}`)
       .then((response) => {
         setData(response.data)
       });

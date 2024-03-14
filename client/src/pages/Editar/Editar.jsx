@@ -20,7 +20,7 @@ export default function Editar() {
     let valorInput = e => setAnime({...anime, [e.target.name]: e.target.value, id})
 
       useEffect(() =>{
-          Axios.get(`https://animecentral-reactjs-nodejs.onrender.com//anime/${id}`)
+          Axios.get(`https://animecentral-reactjs-nodejs.onrender.com/anime/${id}`)
           .then((response) => {
             setAnime(response.data);
           });
@@ -29,7 +29,7 @@ export default function Editar() {
       const editAnime = async e =>{
         e.preventDefault();
 
-        Axios.put(`https://animecentral-reactjs-nodejs.onrender.com//anime/${anime.id}`,{
+        Axios.put(`https://animecentral-reactjs-nodejs.onrender.com/anime/${anime.id}`,{
           titulo: anime.titulo,
           status_: anime.status_,
           nota: anime.nota,

@@ -12,7 +12,7 @@ export default function Users() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      Axios.get(`https://animecentral-reactjs-nodejs.onrender.com//anime/user/${user}`)
+      Axios.get(`https://animecentral-reactjs-nodejs.onrender.com/anime/user/${user}`)
       .then((response) => {
         setData(response.data)
       });

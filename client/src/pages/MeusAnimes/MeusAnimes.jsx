@@ -21,7 +21,7 @@ export default function MeusAnimes() {
     }
   
     useEffect(() => {
-        Axios.get(`https://animecentral-reactjs-nodejs.onrender.com//anime/user/${username}`)
+        Axios.get(`https://animecentral-reactjs-nodejs.onrender.com/anime/user/${username}`)
         .then((response) => {
           setData(response.data)
         });
@@ -30,7 +30,7 @@ export default function MeusAnimes() {
 
     const apagarAnime = (idAnime) => {
       //console.log(idAnime);
-      Axios.delete(`https://animecentral-reactjs-nodejs.onrender.com//anime/${idAnime}`)
+      Axios.delete(`https://animecentral-reactjs-nodejs.onrender.com/anime/${idAnime}`)
       .then((response) => {
         console.log(response);
           setStatus({
