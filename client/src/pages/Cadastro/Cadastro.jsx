@@ -19,7 +19,7 @@ export default function Cadastro() {
 
   const handleClickCadastro = async e =>{
     e.preventDefault();
-    Axios.post("http://localhost:3000/user",{
+    Axios.post("https://animecentral-reactjs-nodejs.onrender.com//user",{
       username: cadastro.username,
       email: cadastro.email,
       senha: cadastro.senha
